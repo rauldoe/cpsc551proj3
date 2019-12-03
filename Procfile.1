@@ -1,0 +1,13 @@
+# clear; foreman start -f Procfile.1
+# See <https://www.ruby-forum.com/t/forcing-stdout-sync-for-scripts/48876/8>
+
+# clear; ruby tuplespace.rb -c naming.yaml
+# clear; ruby adapter.rb -c naming.yaml
+# clear; python naming.py 224.0.0.1 54323
+naming_ts: ruby -e '$stdout.sync = true; load($0 = ARGV.shift)' tuplespace.rb -c naming.yaml
+naming_adapter: ruby -e '$stdout.sync = true; load($0 = ARGV.shift)' adapter.rb -c naming.yaml
+naming: python naming.py 224.0.0.1 54323
+
+recovery: python recovery.py 224.0.0.1 54322
+
+subscribe: python subscribe.py 224.0.0.1 54321

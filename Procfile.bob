@@ -1,0 +1,8 @@
+# clear; foreman start -f Procfile.bob
+# See <https://www.ruby-forum.com/t/forcing-stdout-sync-for-scripts/48876/8>
+
+bob_ts: ruby -e '$stdout.sync = true; load($0 = ARGV.shift)' tuplespace.rb -c bob.yaml
+bob_adapter: ruby -e '$stdout.sync = true; load($0 = ARGV.shift)' adapter.rb -c bob.yaml
+bob_arithmetic_server: python arithmetic_server.py -c bob.yaml
+
+

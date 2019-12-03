@@ -1,0 +1,13 @@
+---
+name: naming
+uri: druby://localhost:12348
+notify:
+filters:
+  - [ ~, ~ ]
+  - [ ~, ~, ~]
+  - [ ~, ~, ~, ~]
+  - [ ~, ~, ~, ~, ~]
+adapter:
+  host: localhost
+  port: 8003
+  max_clients: 32

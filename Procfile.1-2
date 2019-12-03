@@ -1,0 +1,9 @@
+# clear; foreman start -f Procfile.1-2
+# See <https://www.ruby-forum.com/t/forcing-stdout-sync-for-scripts/48876/8>
+
+# clear; ruby tuplespace.rb -c tuplemanager.yaml
+# clear; ruby adapter.rb -c tuplemanager.yaml
+# clear; python tuplemanager.py 224.0.0.1 54324
+tuplemanager_ts: ruby -e '$stdout.sync = true; load($0 = ARGV.shift)' tuplespace.rb -c tuplemanager.yaml
+tuplemanager_adapter: ruby -e '$stdout.sync = true; load($0 = ARGV.shift)' adapter.rb -c tuplemanager.yaml
+tuplemanager: python tuplemanager.py 224.0.0.1 54324

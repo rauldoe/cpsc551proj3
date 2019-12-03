@@ -1,0 +1,8 @@
+# clear; foreman start -f Procfile.chuck
+# See <https://www.ruby-forum.com/t/forcing-stdout-sync-for-scripts/48876/8>
+
+chuck_ts: ruby -e '$stdout.sync = true; load($0 = ARGV.shift)' tuplespace.rb -c chuck.yaml
+chuck_adapter: ruby -e '$stdout.sync = true; load($0 = ARGV.shift)' adapter.rb -c chuck.yaml
+chuck_arithmetic_server: python arithmetic_server.py -c chuck.yaml
+
+
