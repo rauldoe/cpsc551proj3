@@ -1,0 +1,3 @@
+
+srv.1: python srv.py -c srv.1.yaml
+srv.2: python srv.py -c srv.2.yaml
