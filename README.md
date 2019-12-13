@@ -23,3 +23,14 @@ rdebug-ide --host 0.0.0.0 --port 1234 --dispatcher-port 26162 C:\temp\cpsc551pro
 
 Run in VSCode
 clear; ruby adapter.rb -c alice.yaml
+
+https://github.com/Microsoft/vscode/issues/2167
+in launch.json add to debug for programs with command line arguments
+
+"args": [
+    "-c", "srv.1.yaml"
+],
+
+https://stackoverflow.com/questions/38623138/vscode-how-to-set-working-directory-for-debug
+for working dir, do this
+"cwd": "${fileDirname}"
