@@ -1,0 +1,5 @@
+bob write ["bob","my topic","my message"]
+bob write ["alice","start","druby://localhost:12345"]
+bob write ["server_list",["alice"]]
+alice write ["bob","start","druby://localhost:12346"]
+alice write ["server_list",["bob","alice"]]

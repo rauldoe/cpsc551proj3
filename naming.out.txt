@@ -1,6 +1,6 @@
 chuck adapter http://localhost:8002
-bob start druby://localhost:12346
-chuck start druby://localhost:12347
-alice adapter http://localhost:8000
-bob adapter http://localhost:8001
 alice start druby://localhost:12345
+chuck start druby://localhost:12347
+bob adapter http://localhost:8001
+bob start druby://localhost:12346
+alice adapter http://localhost:8000

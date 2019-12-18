@@ -14,12 +14,14 @@ servers = [
     {
     "id": 0,
     "host": "224.0.0.1",
-    "port": 54304
+    "port": 54324,
+    "ts": "http://localhost:8004"
     },
     {
     "id": 1,
     "host": "224.0.0.1",
-    "port": 54305
+    "port": 54325,
+    "ts": "http://localhost:8005"
     }
 ]
 
@@ -109,8 +111,14 @@ isDone = False
 while (not isDone):
     time.sleep(waitPeriod)
 
-    isAlive = checkLeader(servers_ts, servers, waitPeriod)
+    try:
+        isAlive = checkLeader(servers_ts, servers, waitPeriod)
+    except Exception as e1:
+        logging.error(f'{e1}')
 
-    if (not isAlive):
-        print("calling Election")
-        callForElection(servers, electionEvent, servers_ts)
+    try:
+        if (not isAlive):
+            print("calling Election")
+            callForElection(servers, electionEvent, servers_ts)
+    except Exception as e2:
+        logging.error(f'{e2}')

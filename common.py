@@ -126,8 +126,11 @@ class Common:
         except:
             logging.error("Error in processServerList")
 
-        if ((td is None) and doReturnNull):
-            serverList = None
+        if (td is None):
+            if (doReturnNull):
+                serverList = None
+            else:
+                serverList = []
         else:
             serverList = td[1]
         

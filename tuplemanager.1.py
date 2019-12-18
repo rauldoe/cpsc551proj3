@@ -23,12 +23,14 @@ servers = [
     {
     "id": 0,
     "host": "224.0.0.1",
-    "port": 54304
+    "port": 54324,
+    "ts": "http://localhost:8004"
     },
     {
     "id": 1,
     "host": "224.0.0.1",
-    "port": 54305
+    "port": 54325,
+    "ts": "http://localhost:8005"
     }
 ]
 
@@ -85,9 +87,9 @@ def processElectionWinner(id, waitPeriod, ts):
         doEmpty(ts, ["candidate", "candidate", None])
         doEmpty(ts, ["leader", "leader", None])
         ts._out(["leader", "leader", id])
-        print(f"id: {id} is winner", flush=True)
+        print(f"id: {id} is winner")
     else:
-        print(f"id: {id} lost", flush=True)
+        print(f"id: {id} lost")
 
     return isWinner
 
@@ -160,7 +162,7 @@ def handleEventForEachMessage(message, ts):
         ts._out(Common.messageToTuple(message))
         Common.updateServerList(ts, message[Common.MessageEntity])
 
-def handleEventMain(notification, ts, procList, id, servers_ts, isPrimary):
+def handleEventMain(notification, ts, procList, id, servers_ts, servers, isPrimary):
 
     # procList = [[logFilename1, isUnique1, entityList1, None, None, ignoreEntity1, entityListFunc1], [logFilename2, isUnique2, entityList2, None, None, ignoreEntity2, entityListFunc2]]
     # procList[i][3] = notificationList
@@ -198,7 +200,15 @@ def handleEventMain(notification, ts, procList, id, servers_ts, isPrimary):
             except Exception as e:
                 logging.error(f'_out Error {e}') 
 
-            Common.updateServerList(ts, entity)        
+            Common.updateServerList(ts, entity)      
+
+            for backupServer in servers:
+                if (backupServer["id"] != id):
+                    backupTs = proxy.TupleSpaceAdapter(backupServer["ts"])
+                    try:
+                        backupTs._out(td)
+                    except Exception as be:
+                        logging.error(f'_out Error {backupServer["id"]} {backupServer["ts"]} {be}')
 
             procList[0][3].append(notification)
             procList[0][4].append(message)
@@ -301,7 +311,7 @@ def main(address, port):
             data, _ = sock.recvfrom(MAX_UDP_PAYLOAD)
             notification = data.decode()
 
-            g_isPrimary = handleEventMain(notification, namingTs, procList, id, servers_ts, g_isPrimary)
+            g_isPrimary = handleEventMain(notification, namingTs, procList, id, servers_ts, servers, g_isPrimary)
     except Exception as e:
         print("Unexpected error:", sys.exc_info()[0])
         sock.close()

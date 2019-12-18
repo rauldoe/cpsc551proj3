@@ -38,7 +38,30 @@ def readBlog(server, poster, args, ts):
 en = Common.EntityTuplemanager
 args = commandLine()
 # print(f'a {args.action}, p {args.poster}, t {args.topic}, m {args.message}')
-ts = Common.getTsFromConfig(en, Common.TagAdapter)
+# ts = Common.getTsFromConfig(en, Common.TagAdapter)
+
+servers = [
+    {
+    "id": 0,
+    "host": "224.0.0.1",
+    "port": 54324,
+    "ts": "http://localhost:8004"
+    },
+    {
+    "id": 1,
+    "host": "224.0.0.1",
+    "port": 54325,
+    "ts": "http://localhost:8005"
+    }
+]
+
+adapter_host = "localhost"
+adapter_port = 8006
+servers_adapter_uri = f'http://{adapter_host}:{adapter_port}'
+servers_ts = proxy.TupleSpaceAdapter(servers_adapter_uri)
+td = servers_ts._rdp(["leader", "leader", None])
+server = servers[td[2]]
+ts = proxy.TupleSpaceAdapter(server["ts"])
 
 if (args.action == 'read'):
     

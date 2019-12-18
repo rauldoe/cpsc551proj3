@@ -1,0 +1,4 @@
+bob adapter http://localhost:8001
+alice adapter http://localhost:8000
+bob start druby://localhost:12346
+alice start druby://localhost:12345
