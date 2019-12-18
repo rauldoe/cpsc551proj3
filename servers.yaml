@@ -1,0 +1,14 @@
+---
+name: servers
+id: 12351
+uri: druby://localhost:12351
+notify:
+filters:
+  - [ ~, ~ ]
+  - [ ~, ~, ~]
+  - [ ~, ~, ~, ~]
+  - [ ~, ~, ~, ~, ~]
+adapter:
+  host: localhost
+  port: 8006
+  max_clients: 32

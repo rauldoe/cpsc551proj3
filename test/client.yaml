@@ -1,0 +1,8 @@
+---
+id: 1
+name: client.1
+notify:
+  - address: 224.0.0.1
+    port: 54330
+
+

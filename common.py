@@ -53,7 +53,7 @@ class Common:
 
         # print(f'data: {data} len: {len(dList)}')
         event = dList[1]
-        data = dList[2] if (event == Common.EventStart) or (event == Common.EventAdapter) else eval(dList[2])
+        data = eval(dList[2]) if (event == Common.EventRead) or (event == Common.EventTake) or (event == Common.EventWrite) else dList[2]
 
         return {Common.MessageEntity : dList[0], Common.MessageEvent : event,  Common.MessageData : data }
 

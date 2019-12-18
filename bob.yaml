@@ -10,6 +10,8 @@ notify:
     port: 54323
   - address: 224.0.0.1
     port: 54324
+  - address: 224.0.0.1
+    port: 54325
 filters:
   - [ ~, ~ ]
   - [ ~, ~, ~]

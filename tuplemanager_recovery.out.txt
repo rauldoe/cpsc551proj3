@@ -1,4 +1,0 @@
-alice write ["alice","mytopic18","mymessage4"]
-bob write ["bob","my topic","my message"]
-bob write ["bob","my topic","mymessage1"]
-alice write ["alice","my topic","mymessage2"]

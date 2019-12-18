@@ -34,3 +34,9 @@ in launch.json add to debug for programs with command line arguments
 https://stackoverflow.com/questions/38623138/vscode-how-to-set-working-directory-for-debug
 for working dir, do this
 "cwd": "${fileDirname}"
+
+cd test; clear; python client.py -c client.yaml;
+
+Run PowerShell.exe in Administrator Mode
+Set-ExecutionPolicy Unrestricted
+./sp.ps1

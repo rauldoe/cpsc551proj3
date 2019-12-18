@@ -1,0 +1,14 @@
+---
+name: tuplemanager.2
+id: 2
+uri: druby://localhost:12350
+notify:
+filters:
+  - [ ~, ~ ]
+  - [ ~, ~, ~]
+  - [ ~, ~, ~, ~]
+  - [ ~, ~, ~, ~, ~]
+adapter:
+  host: localhost
+  port: 8005
+  max_clients: 32

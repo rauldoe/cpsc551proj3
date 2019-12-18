@@ -5,6 +5,26 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Python: tuplemanager.0.py",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+                "224.0.0.1", "54304"
+            ],
+        },
+        {
+            "name": "Python: tuplemanager.1.py",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+                "224.0.0.1", "54305"
+            ],
+        },
+        {
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
@@ -12,7 +32,8 @@
             "console": "integratedTerminal",
             "cwd": "${fileDirname}",
             "args": [
-                "-c", "srv.1.yaml"
+                "-c",
+                "srv.1.yaml"
             ],
         }
     ]

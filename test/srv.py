@@ -12,9 +12,13 @@ import config
 # per <https://en.wikipedia.org/wiki/User_Datagram_Protocol>
 MAX_UDP_PAYLOAD = 65507
 
-def handleEventMain(notification, notifications):
+def handleEventMain(notification, continueProcessing, notifications):
     notifications.append(notification)
     print(notification)
+
+    continueProcessing = (notification != "exit")
+
+    return continueProcessing
 
 def main(arg1, arg2):
 
@@ -42,12 +46,13 @@ def main(arg1, arg2):
 
     print(f"serverName: {serverName}, id: {id} Listening on udp://{multicastAddress}:{multicastPort}")
 
+    continueProcessing = True
     try:
-        while True:
+        while continueProcessing:
             data, _ = sock.recvfrom(MAX_UDP_PAYLOAD)
             notification = data.decode()
 
-            handleEventMain(notification, notifications)
+            continueProcessing = handleEventMain(notification, continueProcessing, notifications)
     except:
         print("Unexpected error:", sys.exc_info()[0])
         sock.close()
